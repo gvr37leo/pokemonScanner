@@ -1,0 +1,11 @@
+{
+    "name":"PokeDex",
+    "short_name":"PokeDex",
+    "start_url":".",
+    "background_color":"#fff",
+    "display":"standalone",
+    "icons":[{
+        "src":"/images/logo.jpeg",
+        "type":"image/jpg"
+    }]
+}
