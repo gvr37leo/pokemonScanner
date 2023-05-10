@@ -160,7 +160,7 @@ class ScanScreen{
 
             pkmnscreen.title.innerText = best_match.name
             pkmnscreen.link.innerText = 'cardmarket.com'
-            pkmnscreen.link.href = `https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=${best_match.name}+${best_match.set_code}`
+            pkmnscreen.link.href = `https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=${best_match.name}`
             // pkmnscreen.img.src = othersitematch.thumbnail
         })
 
