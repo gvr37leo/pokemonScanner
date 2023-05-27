@@ -137,75 +137,75 @@ class ScanScreen{
         }
 
 
-        fetch('https://api.ximilar.com/collectibles/v2/card_id',{
-            method:'POST',
-            headers:{
-                Authorization:`Token ${ximilartoken}`
-            },
-            body:JSON.stringify({
-            "records": [
-                //   { "_url": "https://teamcovenant.com/wp-content/uploads/2019/06/pikachu.jpg"}
-                {"_base64":imageurl.slice('data:image/png;base64,'.length)}
-            ], "lang": true
-        })
-        }).then(res => res.json())
-        .then(data => {
-            console.log(data)
-            var best_match = data.records[0]._objects[0]._identification.best_match
-            best_match.name
-            best_match.full_name
-            best_match.card_number
-            best_match.sources['pkmncards.com']
-            best_match.sources['tcgplayer.com']
-
-            pkmnscreen.title.innerText = best_match.name
-            pkmnscreen.link.innerText = 'cardmarket.com'
-            pkmnscreen.link.href = `https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=${best_match.name}+${best_match.set_code}`
-            // pkmnscreen.img.src = othersitematch.thumbnail
-        })
-
-        // return await fetch('/lens',{
+        // fetch('https://api.ximilar.com/collectibles/v2/card_id',{
         //     method:'POST',
         //     headers:{
-        //         'Content-Type': 'application/json'
+        //         Authorization:`Token ${ximilartoken}`
         //     },
         //     body:JSON.stringify({
-        //         imageurl:imageurl,
-        //         origin:window.location.origin
-        //     })
-        // }).then(res => res.json()).then(data => {
-        //     // console.log(data.visual_matches)
-        //     console.log(data)
-        //     if(data.search_metadata.status != 'Success'){
-        //         console.log('no success')
-        //         return   
-        //     }
-        //     // data.knowledge_graph[0].title
-        //     // pkmnscreen.img.src = data.knowledge_graph[0].images[0].link
-        //     // data.text_results
-        //     // data.visual_matches
-        //     var cardmarketmatches = data.visual_matches.filter(vm => vm.source.includes('cardmarket'))
-        //     if(cardmarketmatches.length > 0){
-        //         var cardmarketMatch = cardmarketmatches[0]
-        //         pkmnscreen.title.innerText = cardmarketMatch.title
-        //         pkmnscreen.link.innerText = 'cardmarket.com'//cardmarketMatch.title
-        //         pkmnscreen.link.href = cardmarketMatch.link
-                
-                
-        //         // cardmarketMatch.price.currency
-        //         // cardmarketMatch.price.extracted_value
-        //         // cardmarketMatch.price.value
-        //         pkmnscreen.img.src = cardmarketMatch.thumbnail
-        //     }else{
-        //         var othersitematch = data.visual_matches[0]
-        //         pkmnscreen.title.innerText = othersitematch.title
-        //         pkmnscreen.link.innerText = othersitematch.source
-        //         pkmnscreen.link.href = othersitematch.link
-        //         pkmnscreen.img.src = othersitematch.thumbnail
-
-        //     }
-        //     console.log(cardmarketmatches)
+        //     "records": [
+        //         //   { "_url": "https://teamcovenant.com/wp-content/uploads/2019/06/pikachu.jpg"}
+        //         {"_base64":imageurl.slice('data:image/png;base64,'.length)}
+        //     ], "lang": true
         // })
+        // }).then(res => res.json())
+        // .then(data => {
+        //     console.log(data)
+        //     var best_match = data.records[0]._objects[0]._identification.best_match
+        //     best_match.name
+        //     best_match.full_name
+        //     best_match.card_number
+        //     best_match.sources['pkmncards.com']
+        //     best_match.sources['tcgplayer.com']
+
+        //     pkmnscreen.title.innerText = best_match.name
+        //     pkmnscreen.link.innerText = 'cardmarket.com'
+        //     pkmnscreen.link.href = `https://www.cardmarket.com/en/Pokemon/Products/Search?searchString=${best_match.name}+${best_match.set_code}`
+        //     // pkmnscreen.img.src = othersitematch.thumbnail
+        // })
+
+        return await fetch('/lens',{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                imageurl:imageurl,
+                origin:window.location.origin
+            })
+        }).then(res => res.json()).then(data => {
+            // console.log(data.visual_matches)
+            console.log(data)
+            if(data.search_metadata.status != 'Success'){
+                console.log('no success')
+                return   
+            }
+            // data.knowledge_graph[0].title
+            // pkmnscreen.img.src = data.knowledge_graph[0].images[0].link
+            // data.text_results
+            // data.visual_matches
+            var cardmarketmatches = data.visual_matches.filter(vm => vm.source.includes('cardmarket'))
+            if(cardmarketmatches.length > 0){
+                var cardmarketMatch = cardmarketmatches[0]
+                pkmnscreen.title.innerText = cardmarketMatch.title
+                pkmnscreen.link.innerText = 'cardmarket.com'//cardmarketMatch.title
+                pkmnscreen.link.href = cardmarketMatch.link
+                
+                
+                // cardmarketMatch.price.currency
+                // cardmarketMatch.price.extracted_value
+                // cardmarketMatch.price.value
+                pkmnscreen.img.src = cardmarketMatch.thumbnail
+            }else{
+                var othersitematch = data.visual_matches[0]
+                pkmnscreen.title.innerText = othersitematch.title
+                pkmnscreen.link.innerText = othersitematch.source
+                pkmnscreen.link.href = othersitematch.link
+                pkmnscreen.img.src = othersitematch.thumbnail
+
+            }
+            console.log(cardmarketmatches)
+        })
 
         
     }

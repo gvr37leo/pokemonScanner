@@ -23,45 +23,30 @@ app.use(express.static('./'))
 app.post('/lens',(req,res) => {
     
     //imageurl is null
-    // const buffer = Buffer.from(req.body.imageurl.slice('data:image/png;base64,'.length), "base64");
-    // fs.writeFileSync("./images/image.png", buffer);
+    const buffer = Buffer.from(req.body.imageurl.slice('data:image/png;base64,'.length), "base64");
+    fs.writeFileSync("./images/image.png", buffer);
 
 
-    fetch('https://api.ximilar.com/collectibles/v2/card_id',{
-        method:'POST',
-        headers:{
-            Authorization:`Token ${ximilartoken}`
-        },
-        body:JSON.stringify({
-        "records": [
-            //   { "_url": "https://teamcovenant.com/wp-content/uploads/2019/06/pikachu.jpg"}
-              ,{"_base64":req.body.imageurl.slice('data:image/png;base64,'.length)}
-        ], "lang": true
-      })
-    }).then(res => res.json())
+
+    fetch(`https://serpapi.com/search.json?engine=${engine}&url=${`${req.body.origin}/images/image.png`}&hl=${hl}&api_key=${key}&no_cache=true`, {})
+    .then(res => res.json())
     .then(data => {
         res.send(data)
     })
-
-    // fetch(`https://serpapi.com/search.json?engine=${engine}&url=${`${req.body.origin}/images/image.png`}&hl=${hl}&api_key=${key}&no_cache=true`, {})
-    // .then(res => res.json())
-    // .then(data => {
-    //     res.send(data)
-    // })
 })
 
 
-app.listen(80)
-// var http = express();
-// http.get('*', function(req, res) {  
-//     res.redirect('https://' + req.headers.host + req.url);
-// })
-// http.listen(80);
-// var options = {
-//     key: fs.readFileSync('/etc/letsencrypt/live/poke-dex.com/privkey.pem'),
-//     cert: fs.readFileSync('/etc/letsencrypt/live/poke-dex.com/fullchain.pem')
-// };
-// https.createServer(options, app).listen(443);
+// app.listen(80)
+var http = express();
+http.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+})
+http.listen(80);
+var options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/poke-dex.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/poke-dex.com/fullchain.pem')
+};
+https.createServer(options, app).listen(443);
 console.log('listening')
 
 // fetch('https://api.ximilar.com/dom_colors/generic/v2/dominantcolor',{
