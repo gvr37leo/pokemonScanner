@@ -57,8 +57,7 @@ class ScanScreen{
             bottom: 22%;
             z-index: -1;
         `})
-            this.videoel = crend('video','',{autoplay:true})
-
+            this.videoel = crend('video','',{autoplay:true,muted:true,playsinline:true})
         end()
         // img({width:'100%',height:'100%',src:mewtwoimgurl})
         // div({style:'position:absolute; top:0;left:0;right:0;height:50px;'});
