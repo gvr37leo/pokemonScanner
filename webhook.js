@@ -1,12 +1,12 @@
 // https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment/hosting-guides/digitalocean.html
 var secret = 'cucumber';
-var repo = '~/strapitournament';
+var repo = '~/pokemonScanner';
 
 const http = require('http');
 const crypto = require('crypto');
 const exec = require('child_process').exec;
 
-const PM2_CMD = 'cd ~/strapitournament && pm2 startOrRestart ecosystem.config.js';
+const PM2_CMD = 'cd ~/pokemonScanner && pm2 startOrRestart server';
 
 http.createServer(function(req, res) {
   req.on('data', function(chunk) {
