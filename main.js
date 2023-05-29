@@ -274,10 +274,3 @@ navigator.serviceWorker.register('/serviceworker.js')
 
 
 
-
-
-
-
-var simipourtestdata
-
-
