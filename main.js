@@ -63,7 +63,7 @@ class ScanScreen{
         // div({style:'position:absolute; top:0;left:0;right:0;height:50px;'});
             // text('hello');
         // end(); 
-        let scrnshotbtn = crend('button','scan',{style:`
+        let scrnshotbtn = crend('button','scanasd',{style:`
             margin: 30px;
             padding: 20px;
             font-weight: bold;
