@@ -6,7 +6,7 @@ const http = require('http');
 const crypto = require('crypto');
 const exec = require('child_process').exec;
 
-const PM2_CMD = 'cd ~/pokemonScanner && pm2 startOrRestart server';
+const PM2_CMD = 'cd ~/pokemonScanner && pm2 restart server';
 
 http.createServer(function(req, res) {
   req.on('data', function(chunk) {
